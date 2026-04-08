@@ -4,8 +4,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: { unoptimized: true },
   env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001/api",
-    NEXT_PUBLIC_CUSTOMER_URL: process.env.NEXT_PUBLIC_CUSTOMER_URL || "http://localhost:3000",
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "https://pattayapro-backend-production.up.railway.app/api",
+    NEXT_PUBLIC_CUSTOMER_URL: process.env.NEXT_PUBLIC_CUSTOMER_URL || "https://pattayapro-customer.pages.dev",
   },
 };
 module.exports = nextConfig;
