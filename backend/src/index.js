@@ -14,12 +14,21 @@ const PORT = process.env.PORT || 5000;
 
 // ─── MIDDLEWARE ──────────────────────────────────────
 app.use(cors({
-  origin: [
-    process.env.CUSTOMER_URL || "http://localhost:3000",
-    process.env.PARTNER_URL || "http://localhost:3001",
-    "http://localhost:3000",
-    "http://localhost:3001",
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    const allowed = [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      process.env.CUSTOMER_URL,
+      process.env.PARTNER_URL,
+    ].filter(Boolean);
+    // Allow any .pages.dev or .trycloudflare.com domain
+    if (allowed.includes(origin) || /\.(pages\.dev|trycloudflare\.com)$/.test(origin)) {
+      return callback(null, true);
+    }
+    callback(null, true); // Allow all for now during testing
+  },
   credentials: true,
 }));
 app.use(express.json());
