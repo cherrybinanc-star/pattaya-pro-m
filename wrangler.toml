@@ -1,5 +1,0 @@
-name = "pattaya-pro-m"
-pages_build_output_dir = "./frontend/out"
-
-[build]
-command = "cd frontend && npm install && npm run build"
